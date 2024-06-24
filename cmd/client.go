@@ -2,8 +2,8 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"github.com/benetis/weather-whisperer/internal/meteo"
+	"github.com/benetis/weather-whisperer/internal/workflows"
 	"go.temporal.io/sdk/client"
 	"log"
 )
@@ -23,7 +23,7 @@ func main() {
 	we, err := c.ExecuteWorkflow(
 		context.Background(),
 		workflowOptions,
-		meteo.FetchForecastsWorkflow,
+		workflows.FetchAndSaveForecastsWorkflow,
 		"kaunas",
 	)
 
@@ -37,5 +37,5 @@ func main() {
 		log.Fatalln("Unable to get workflow result", err)
 	}
 
-	fmt.Printf("Weather in %s: %.2f°C\n", result.Forecasts[0].ForecastTimeUtc, result.Forecasts[0].AirTemperature)
+	log.Println("Workflow completed with result", result)
 }
