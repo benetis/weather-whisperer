@@ -10,6 +10,11 @@ However, feel free to use it as you wish.
 - Note: meteo.lt API has 180 requests per minute limit and 20k requests per day limit
   - This project does not handle rate limiting
 
+## Diagrams
+
+#### Main flows
+![Main flows](./docs/main_flows.png)
+
 #### Run temporal server
 
 Instructions from https://github.com/temporalio/docker-compose
