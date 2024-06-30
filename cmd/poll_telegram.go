@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"github.com/benetis/weather-whisperer/internal/meteo"
 	"github.com/benetis/weather-whisperer/internal/storage"
 	"github.com/benetis/weather-whisperer/internal/telegram"
@@ -29,5 +30,28 @@ func main() {
 
 	log.Println("Worker started successfully")
 
+	startCronWorkflow(c)
+
 	telegram.Poll(c)
+}
+
+func startCronWorkflow(c client.Client) {
+	workflowOptions := client.StartWorkflowOptions{
+		ID:           "refresh-data-scheduled",
+		TaskQueue:    "telegram-task-queue",
+		CronSchedule: "@every 30m",
+	}
+
+	we, err := c.ExecuteWorkflow(
+		context.Background(),
+		workflowOptions,
+		workflows.DownloadForecastsWorkflow,
+		"kaunas",
+	)
+
+	if err != nil {
+		log.Fatalf("Unable to execute workflow: %v", err)
+	}
+
+	log.Printf("Workflow started with ID %s", we.GetID())
 }

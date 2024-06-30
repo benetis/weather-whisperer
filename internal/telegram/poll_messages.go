@@ -27,6 +27,8 @@ func Poll(temporal client.Client) {
 		log.Fatalf("Error getting updates channel: %v", err)
 	}
 
+	log.Println("Polling messages...")
+
 	for update := range updates {
 		switch {
 		case update.Message != nil:
