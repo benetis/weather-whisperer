@@ -2,11 +2,17 @@ module github.com/benetis/weather-whisperer
 
 go 1.22.4
 
-require go.temporal.io/sdk v1.9.0
+require (
+	go.temporal.io/sdk v1.9.0
+	gopkg.in/telegram-bot-api.v4 v4.6.4
+	gorm.io/driver/sqlite v1.5.6
+	gorm.io/gorm v1.25.10
+)
 
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/facebookgo/clock v0.0.0-20150410010913-600d898af40a // indirect
+	github.com/go-telegram-bot-api/telegram-bot-api v4.6.4+incompatible // indirect
 	github.com/gogo/googleapis v1.4.1 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/gogo/status v1.1.0 // indirect
@@ -23,6 +29,7 @@ require (
 	github.com/robfig/cron v1.2.0 // indirect
 	github.com/stretchr/objx v0.3.0 // indirect
 	github.com/stretchr/testify v1.7.0 // indirect
+	github.com/technoweenie/multipartstreamer v1.0.1 // indirect
 	github.com/uber-go/tally v3.3.17+incompatible // indirect
 	go.temporal.io/api v1.4.1-0.20210420220407-6f00f7f98373 // indirect
 	go.uber.org/atomic v1.7.0 // indirect
@@ -34,6 +41,4 @@ require (
 	google.golang.org/grpc v1.39.0 // indirect
 	google.golang.org/protobuf v1.26.0 // indirect
 	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b // indirect
-	gorm.io/driver/sqlite v1.5.6 // indirect
-	gorm.io/gorm v1.25.10 // indirect
 )

@@ -23,7 +23,7 @@ func main() {
 	we, err := c.ExecuteWorkflow(
 		context.Background(),
 		workflowOptions,
-		workflows.FetchAndSaveForecastsWorkflow,
+		workflows.DownloadForecastsWorkflow,
 		"kaunas",
 	)
 

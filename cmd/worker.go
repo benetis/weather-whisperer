@@ -17,7 +17,7 @@ func main() {
 	defer c.Close()
 
 	w := worker.New(c, "weather-task-queue", worker.Options{})
-	w.RegisterWorkflow(workflows.FetchAndSaveForecastsWorkflow)
+	w.RegisterWorkflow(workflows.DownloadForecastsWorkflow)
 	w.RegisterActivity(meteo.FetchForecasts)
 	w.RegisterActivity(storage.SaveForecasts)
 

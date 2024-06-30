@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-func FetchAndSaveForecastsWorkflow(ctx workflow.Context, city string) error {
+func DownloadForecastsWorkflow(ctx workflow.Context, city string) error {
 	logger := workflow.GetLogger(ctx)
 	logger.Info("Fetch forecasts workflow started")
 
