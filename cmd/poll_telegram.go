@@ -1,6 +1,8 @@
 package main
 
 import (
+	"github.com/benetis/weather-whisperer/internal/meteo"
+	"github.com/benetis/weather-whisperer/internal/storage"
 	"github.com/benetis/weather-whisperer/internal/telegram"
 	"github.com/benetis/weather-whisperer/internal/workflows"
 	"go.temporal.io/sdk/client"
@@ -16,7 +18,9 @@ func main() {
 	defer c.Close()
 
 	w := worker.New(c, "telegram-task-queue", worker.Options{})
-	w.RegisterWorkflow(workflows.TelegramCommand)
+	w.RegisterWorkflow(workflows.DownloadForecastsWorkflow)
+	w.RegisterActivity(meteo.FetchForecasts)
+	w.RegisterActivity(storage.SaveForecasts)
 
 	err = w.Start()
 	if err != nil {
@@ -25,5 +29,5 @@ func main() {
 
 	log.Println("Worker started successfully")
 
-	telegram.Poll()
+	telegram.Poll(c)
 }
